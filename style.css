@@ -186,3 +186,103 @@ body.snap-scroll { overflow: hidden; }
     .glass-features { grid-template-columns: 1fr; }
     .scroll-indicator { display: none; }
 }
+
+/* --- About Page Enhancements --- */
+
+/* About Page Hero Section */
+.hero-about {
+    position: relative;
+    padding: 6rem 0;
+    text-align: center;
+    color: var(--white);
+    background: linear-gradient(135deg, rgba(26, 77, 46, 0.9), rgba(45, 90, 61, 0.85)), url('images/placeholder-story.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+.hero-about .hero-title {
+    font-size: 3rem;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.hero-about .hero-subtitle {
+    font-size: 1.3rem;
+    color: var(--gold);
+    font-style: italic;
+    max-width: 600px;
+    margin: 1rem auto 0;
+}
+
+/* Content Sections on About Page */
+.about-content {
+    padding: 5rem 0;
+    background: var(--white); /* White background for the main intro */
+}
+
+.our-story {
+    padding: 5rem 0;
+    background: var(--cream); /* Alternating color */
+}
+
+.story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 4rem;
+}
+
+.story-image img {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.story-text .page-title {
+    text-align: left;
+}
+
+.story-text .page-title::after {
+    margin: 0.5rem 0 0; /* Align the underline to the left */
+}
+
+.story-text p {
+    margin-top: 1.5rem;
+    color: var(--text-light);
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* Values Section */
+.about-values {
+    padding: 5rem 0;
+    background: var(--white);
+}
+
+.diff-card {
+    text-align: center;
+}
+
+.diff-card:hover {
+    transform: translateY(-5px); /* Consistent hover effect */
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    /* In a real project, you would replace the placeholder text with actual icons, e.g., from Font Awesome */
+}
+
+/* Responsive adjustments for new sections */
+@media (max-width: 992px) {
+    .story-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-about .hero-title {
+        font-size: 2.2rem;
+    }
+}
