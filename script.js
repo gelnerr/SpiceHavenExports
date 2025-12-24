@@ -31,3 +31,16 @@ if(slides.length > 0) {
         slides[currentSlide].classList.add('active');
     }, 5000); // Change every 5 seconds
 }
+
+// SCROLL REVEAL ANIMATION
+const revealElements = document.querySelectorAll('.reveal');
+
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+        }
+    });
+}, { threshold: 0.15 }); // Trigger when 15% of item is visible
+
+revealElements.forEach(el => revealObserver.observe(el));
