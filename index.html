@@ -116,10 +116,9 @@
         .hero {
             position: relative;
             color: var(--white);
-            padding: 8rem 0; /* Increased padding for impact */
+            padding: 8rem 0;
             text-align: center;
             overflow: hidden;
-            /* Minimum height to ensure images look good */
             min-height: 600px; 
             display: flex;
             align-items: center;
@@ -152,21 +151,20 @@
             opacity: 1;
         }
 
-        /* The Green Tint Overlay */
+        /* The Green Tint Overlay - Opaque Green Style */
         .hero-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            /* This gradient creates the opaque green look */
             background: linear-gradient(135deg, rgba(26, 77, 46, 0.9), rgba(45, 90, 61, 0.85));
             z-index: 1;
         }
 
         .hero-content {
             position: relative;
-            z-index: 2; /* Ensures text is above the image and overlay */
+            z-index: 2;
         }
 
         .hero h2 {
@@ -257,10 +255,9 @@
              margin-bottom: 1rem;
         }
 
-        /* Differentiators Grid */
+        /* Differentiators Grid - Fixed for Horizontal Alignment */
         .diff-grid {
             display: grid;
-            /* Adjusted minmax to fit better on medium screens */
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
@@ -279,7 +276,7 @@
             border-radius: 10px;
             border-left: 5px solid var(--gold);
             transition: transform 0.3s, box-shadow 0.3s;
-            height: 100%; /* Ensures all cards in a row are same height */
+            height: 100%;
         }
 
         .diff-card:hover {
@@ -301,7 +298,7 @@
         /* Products Grid */
         .products-section {
             padding: 5rem 0;
-            background: var(--cream); /* Slightly different bg for home page section */
+            background: var(--cream);
         }
 
         .products-page {
@@ -459,7 +456,7 @@
     <header>
         <nav class="container">
             <a href="#" class="logo-container" onclick="showPage('home'); return false;">
-                <img src="https://placehold.co/70x70/1a4d2e/c9a961?text=SH" alt="Spice Haven Exports Logo" class="logo-img">
+                <img src="logo.png" alt="Spice Haven Exports Logo" class="logo-img">
                 <div class="logo-text">
                     <h1>Spice Haven Exports</h1>
                     <p>Pure Aroma. True Flavor.</p>
@@ -514,7 +511,7 @@
                 <div class="product-grid">
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="https://placehold.co/600x400/2d5a3d/c9a961?text=Black+Pepper" alt="Idukki Black Pepper">
+                            <img src="images/black-pepper.jpg" alt="Idukki Black Pepper">
                         </div>
                         <div class="product-info">
                             <h3>Idukki Black Pepper</h3>
@@ -527,7 +524,7 @@
                     </div>
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="https://placehold.co/600x400/2d5a3d/c9a961?text=Cardamom" alt="Green Cardamom">
+                            <img src="images/cardamom.jpg" alt="Green Cardamom">
                         </div>
                         <div class="product-info">
                             <h3>Green Cardamom</h3>
@@ -540,7 +537,7 @@
                     </div>
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="https://placehold.co/600x400/2d5a3d/c9a961?text=Coffee" alt="Idukki Coffee">
+                            <img src="images/coffee.jpg" alt="Idukki Coffee">
                         </div>
                         <div class="product-info">
                             <h3>High Range Coffee</h3>
@@ -637,7 +634,7 @@
                 <div class="product-grid">
                     <div class="product-card">
                         <div class="product-image">
-                             <img src="https://placehold.co/600x400/2d5a3d/c9a961?text=Black+Pepper" alt="Idukki Black Pepper">
+                             <img src="images/black-pepper.jpg" alt="Idukki Black Pepper">
                         </div>
                         <div class="product-info">
                             <h3>Idukki Black Pepper</h3>
@@ -653,7 +650,7 @@
                     </div>
                     <div class="product-card">
                         <div class="product-image">
-                             <img src="https://placehold.co/600x400/2d5a3d/c9a961?text=Cardamom" alt="Green Cardamom">
+                             <img src="images/cardamom.jpg" alt="Green Cardamom">
                         </div>
                         <div class="product-info">
                             <h3>Green & Dried Cardamom</h3>
@@ -669,7 +666,7 @@
                     </div>
                     <div class="product-card">
                         <div class="product-image">
-                             <img src="https://placehold.co/600x400/2d5a3d/c9a961?text=Coffee" alt="Idukki Coffee">
+                             <img src="images/coffee.jpg" alt="Idukki Coffee">
                         </div>
                         <div class="product-info">
                             <h3>Idukki Coffee</h3>
