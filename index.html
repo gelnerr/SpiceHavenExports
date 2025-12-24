@@ -4,458 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spice Haven Exports | Pure Aroma. True Flavor.</title>
-    <meta name="description" content="Premium spices from Idukki, Kerala. Exporting authentic pepper, cardamom, and coffee from the Western Ghats to global markets.">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --deep-green: #1a4d2e;
-            --forest-green: #2d5a3d;
-            --gold: #c9a961;
-            --earth-brown: #6b4423;
-            --cream: #faf8f3;
-            --white: #ffffff;
-            --text-dark: #2c2c2c;
-            --text-light: #666;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            background: var(--cream);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header */
-        header {
-            background: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            text-decoration: none;
-        }
-
-        .logo-img {
-            width: 70px;
-            height: 70px;
-            object-fit: contain;
-        }
-
-        .logo-text h1 {
-            font-size: 1.5rem;
-            color: var(--deep-green);
-            font-weight: 600;
-        }
-
-        .logo-text p {
-            font-size: 0.85rem;
-            color: var(--gold);
-            font-style: italic;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        nav a {
-            color: var(--text-dark);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--gold);
-        }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            background: none;
-            border: none;
-            color: var(--deep-green);
-            cursor: pointer;
-        }
-
-        /* Page Content */
-        .page-content {
-            display: none;
-        }
-
-        .page-content.active {
-            display: block;
-        }
-
-        /* Hero Section with Slider */
-        .hero {
-            position: relative;
-            color: var(--white);
-            padding: 8rem 0;
-            text-align: center;
-            overflow: hidden;
-            min-height: 600px; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* The Slider Container */
-        .hero-slider {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
-
-        .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out;
-        }
-
-        .slide.active {
-            opacity: 1;
-        }
-
-        /* The Green Tint Overlay - Opaque Green Style */
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(26, 77, 46, 0.9), rgba(45, 90, 61, 0.85));
-            z-index: 1;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero h2 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .hero .tagline {
-            font-size: 1.5rem;
-            color: var(--gold);
-            font-style: italic;
-            margin-bottom: 1rem;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
-        }
-
-        .hero .subtitle {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            opacity: 1;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: var(--gold);
-            color: var(--white);
-            padding: 1rem 2.5rem;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 2px solid transparent;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(201,169,97,0.4);
-            background: transparent;
-            border-color: var(--gold);
-            color: var(--gold);
-        }
-
-        /* Common Page Styles */
-        .page-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .page-title {
-            font-size: 2.5rem;
-            color: var(--deep-green);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .page-title::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 3px;
-            background: var(--gold);
-            margin: 0.5rem auto 0;
-        }
-
-        /* About & Intro Text */
-        .about-intro {
-            max-width: 800px;
-            margin: 0 auto 3rem;
-            text-align: center;
-            font-size: 1.15rem;
-            line-height: 1.8;
-            color: var(--text-light);
-        }
-        
-        .vision-mission {
-            background: var(--cream);
-            padding: 3rem;
-            border-radius: 15px;
-            margin: 3rem 0;
-        }
-        
-        .vision-mission h3 {
-             color: var(--deep-green);
-             font-size: 1.8rem;
-             margin-bottom: 1rem;
-        }
-
-        /* Differentiators Grid - Fixed for Horizontal Alignment */
-        .diff-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        /* Force 4 columns in one row on large screens */
-        @media (min-width: 1200px) {
-            .diff-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-
-        .diff-card {
-            background: var(--white);
-            padding: 2.5rem 2rem;
-            border-radius: 10px;
-            border-left: 5px solid var(--gold);
-            transition: transform 0.3s, box-shadow 0.3s;
-            height: 100%;
-        }
-
-        .diff-card:hover {
-            transform: translateX(5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .diff-card h3 {
-            color: var(--deep-green);
-            margin-bottom: 1rem;
-            font-size: 1.4rem;
-        }
-
-        .diff-card p {
-            color: var(--text-light);
-            line-height: 1.7;
-        }
-
-        /* Products Grid */
-        .products-section {
-            padding: 5rem 0;
-            background: var(--cream);
-        }
-
-        .products-page {
-            padding: 4rem 0;
-            background: var(--white);
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            margin-top: 3rem;
-        }
-
-        .product-card {
-            background: var(--white);
-            border-radius: 15px;
-            overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-
-        .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-        }
-
-        .product-image {
-            height: 250px;
-            background: linear-gradient(135deg, var(--forest-green), var(--deep-green));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .product-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-
-        .product-card:hover .product-image img {
-            transform: scale(1.05);
-        }
-
-        .product-info {
-            padding: 2rem;
-        }
-
-        .product-info h3 {
-            color: var(--deep-green);
-            font-size: 1.6rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .product-subtitle {
-            color: var(--gold);
-            font-style: italic;
-            margin-bottom: 1rem;
-            font-size: 1rem;
-        }
-
-        .product-features {
-            list-style: none;
-            margin-top: 1rem;
-        }
-
-        .product-features li {
-            padding: 0.4rem 0;
-            color: var(--text-light);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            font-size: 0.95rem;
-        }
-
-        .product-features li:before {
-            content: '✓ ';
-            color: var(--gold);
-            font-weight: bold;
-            margin-right: 0.5rem;
-        }
-
-        /* Contact Styles */
-        .contact-page {
-            padding: 4rem 0;
-            background: var(--white);
-        }
-        
-        .contact-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .contact-card {
-            background: var(--cream);
-            padding: 2.5rem;
-            border-radius: 15px;
-            text-align: center;
-        }
-        
-        .contact-detail a {
-            color: var(--gold);
-            text-decoration: none;
-        }
-        
-        .contact-cta {
-            background: var(--deep-green);
-            color: var(--white);
-            padding: 3rem;
-            border-radius: 15px;
-            text-align: center;
-            margin-top: 3rem;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--earth-brown);
-            color: var(--cream);
-            text-align: center;
-            padding: 2rem 0;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .mobile-menu { display: block; }
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--white);
-                flex-direction: column;
-                padding: 1rem;
-                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-            }
-            nav ul.active { display: flex; }
-            .hero h2 { font-size: 2rem; }
-            .hero .tagline { font-size: 1.2rem; }
-            .hero .subtitle { font-size: 1rem; }
-            .product-grid, .diff-grid, .contact-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+    <meta name="description" content="Premium spices from Idukki, Kerala. Exporting authentic pepper, cardamom, and coffee.">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
         <nav class="container">
-            <a href="#" class="logo-container" onclick="showPage('home'); return false;">
+            <a href="index.html" class="logo-container">
                 <img src="logo.png" alt="Spice Haven Exports Logo" class="logo-img">
                 <div class="logo-text">
                     <h1>Spice Haven Exports</h1>
@@ -464,320 +19,96 @@
             </a>
             <button class="mobile-menu" onclick="toggleMenu()">☰</button>
             <ul id="nav-menu">
-                <li><a href="#" onclick="showPage('home'); return false;">Home</a></li>
-                <li><a href="#" onclick="showPage('about'); return false;">About</a></li>
-                <li><a href="#" onclick="showPage('products'); return false;">Products</a></li>
-                <li><a href="#" onclick="showPage('contact'); return false;">Contact</a></li>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <div id="home-page" class="page-content active">
-        <section class="hero">
-            <div class="hero-slider">
-                <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=1920&auto=format&fit=crop');"></div>
-                <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1621956534969-25f00da7d29d?q=80&w=1920&auto=format&fit=crop');"></div>
-                <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1920&auto=format&fit=crop');"></div>
-            </div>
-            
-            <div class="hero-overlay"></div>
-            
-            <div class="container hero-content">
-                <h2>Spice Haven Exports</h2>
-                <p class="tagline">Pure Aroma. True Flavor.</p>
-                <p class="subtitle">From The Misty Hills Of Idukki To Kitchens Around The World</p>
-                <a href="#" onclick="showPage('contact'); return false;" class="cta-button">Get In Touch</a>
-            </div>
-        </section>
+    <section class="hero">
+        <div class="hero-slider">
+            <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=1920&auto=format&fit=crop');"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1621956534969-25f00da7d29d?q=80&w=1920&auto=format&fit=crop');"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1920&auto=format&fit=crop');"></div>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h2>Spice Haven Exports</h2>
+            <p class="tagline">Pure Aroma. True Flavor.</p>
+            <p class="subtitle">From The Misty Hills Of Idukki To Kitchens Around The World</p>
+            <a href="contact.html" class="cta-button">Get In Touch</a>
+        </div>
+    </section>
 
-        <section style="padding: 5rem 0; background: var(--white);">
-            <div class="container">
-                <div class="page-header">
-                    <h2 class="page-title">Welcome to Spice Haven</h2>
-                </div>
-                <div class="about-intro">
-                    <p>Spice Haven Exports is a small-scale, quality-driven enterprise dedicated to bringing the finest pepper, cardamom, coffee, and select spices from the pristine Western Ghats of Idukki, Kerala to global markets.</p>
-                    <p>Rooted in tradition and guided by sustainability, we work closely with local farmers to ensure every product reflects the rich soil, pure climate, and timeless heritage of Idukki—often called God's Own Spice Garden.</p>
-                </div>
+    <section style="padding: 5rem 0; background: var(--white);">
+        <div class="container">
+            <div class="page-header">
+                <h2 class="page-title">Welcome to Spice Haven</h2>
             </div>
-        </section>
+            <div class="about-intro">
+                <p>Spice Haven Exports is dedicated to bringing the finest pepper, cardamom, and coffee from the pristine Western Ghats of Idukki, Kerala to global markets.</p>
+                <p>Rooted in tradition and guided by sustainability, we work closely with local farmers to ensure every product reflects the rich soil of Idukki—God's Own Spice Garden.</p>
+            </div>
+        </div>
+    </section>
 
-        <section class="products-section">
-            <div class="container">
-                <div class="page-header">
-                    <h2 class="page-title">Our Signature Spices</h2>
-                    <p style="margin-top:1rem; color:var(--text-light)">Direct from the plantation to your port.</p>
-                </div>
-                <div class="product-grid">
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="images/black-pepper.jpg" alt="Idukki Black Pepper">
-                        </div>
-                        <div class="product-info">
-                            <h3>Idukki Black Pepper</h3>
-                            <p class="product-subtitle">Idukki Gold</p>
-                            <ul class="product-features">
-                                <li>High piperine content</li>
-                                <li>Bold flavor</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="images/cardamom.jpg" alt="Green Cardamom">
-                        </div>
-                        <div class="product-info">
-                            <h3>Green Cardamom</h3>
-                            <p class="product-subtitle">Queen of Spices</p>
-                            <ul class="product-features">
-                                <li>High oil content</li>
-                                <li>Intense aroma</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="images/coffee.jpg" alt="Idukki Coffee">
-                        </div>
-                        <div class="product-info">
-                            <h3>High Range Coffee</h3>
-                            <p class="product-subtitle">Arabica & Robusta</p>
-                            <ul class="product-features">
-                                <li>Shade-grown</li>
-                                <li>Rich aromatic profile</li>
-                            </ul>
-                        </div>
+    <section class="products-section">
+        <div class="container">
+            <div class="page-header">
+                <h2 class="page-title">Our Signature Spices</h2>
+                <p style="margin-top:1rem; color:var(--text-light)">Direct from the plantation to your port.</p>
+            </div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image"><img src="images/black-pepper.jpg" alt="Idukki Black Pepper"></div>
+                    <div class="product-info">
+                        <h3>Idukki Black Pepper</h3>
+                        <p class="product-subtitle">Idukki Gold</p>
+                        <ul class="product-features"><li>High piperine content</li><li>Bold flavor</li></ul>
                     </div>
                 </div>
-                <div style="text-align: center; margin-top: 3rem;">
-                    <a href="#" onclick="showPage('products'); return false;" class="cta-button">View All Details</a>
+                <div class="product-card">
+                    <div class="product-image"><img src="images/cardamom.jpg" alt="Green Cardamom"></div>
+                    <div class="product-info">
+                        <h3>Green Cardamom</h3>
+                        <p class="product-subtitle">Queen of Spices</p>
+                        <ul class="product-features"><li>High oil content</li><li>Intense aroma</li></ul>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image"><img src="images/coffee.jpg" alt="Idukki Coffee"></div>
+                    <div class="product-info">
+                        <h3>High Range Coffee</h3>
+                        <p class="product-subtitle">Arabica & Robusta</p>
+                        <ul class="product-features"><li>Shade-grown</li><li>Rich aromatic profile</li></ul>
+                    </div>
                 </div>
             </div>
-        </section>
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="products.html" class="cta-button">View All Details</a>
+            </div>
+        </div>
+    </section>
 
-        <section style="padding: 5rem 0; background: var(--white);">
-            <div class="container">
-                <div class="page-header">
-                    <h2 class="page-title">What Makes Us Different</h2>
-                </div>
-                <div class="diff-grid">
-                    <div class="diff-card">
-                        <h3>Uncompromised Quality</h3>
-                        <p>Only carefully handpicked, naturally grown spices—free from adulteration and unnecessary processing.</p>
-                    </div>
-                    <div class="diff-card">
-                        <h3>Pure & Authentic</h3>
-                        <p>Our spices retain their natural oils, aroma, and flavor, just as nature intended.</p>
-                    </div>
-                    <div class="diff-card">
-                        <h3>Sustainably Sourced</h3>
-                        <p>We support eco-friendly farming practices and fair partnerships with small farmers in Idukki.</p>
-                    </div>
-                    <div class="diff-card">
-                        <h3>Fresh from the Source</h3>
-                        <p>Direct sourcing ensures maximum freshness, better traceability, and superior taste.</p>
-                    </div>
-                </div>
+    <section style="padding: 5rem 0; background: var(--white);">
+        <div class="container">
+            <div class="page-header"><h2 class="page-title">What Makes Us Different</h2></div>
+            <div class="diff-grid">
+                <div class="diff-card"><h3>Uncompromised Quality</h3><p>Only carefully handpicked, naturally grown spices.</p></div>
+                <div class="diff-card"><h3>Pure & Authentic</h3><p>Our spices retain their natural oils, aroma, and flavor.</p></div>
+                <div class="diff-card"><h3>Sustainably Sourced</h3><p>We support eco-friendly farming practices and fair partnerships.</p></div>
+                <div class="diff-card"><h3>Fresh from the Source</h3><p>Direct sourcing ensures maximum freshness.</p></div>
             </div>
-        </section>
-    </div>
-
-    <div id="about-page" class="page-content">
-        <section class="about-page">
-            <div class="container">
-                <div class="page-header">
-                    <h2 class="page-title">About Spice Haven Exports</h2>
-                </div>
-                <div class="about-intro">
-                    <p>Spice Haven Exports is a small-scale, quality-driven enterprise dedicated to bringing the finest pepper, cardamom, coffee, and select spices from the pristine Western Ghats of Idukki, Kerala to global markets.</p>
-                    <p>Rooted in tradition and guided by sustainability, we work closely with local farmers to ensure every product reflects the rich soil, pure climate, and timeless heritage of Idukki—often called God's Own Spice Garden.</p>
-                </div>
-                <div class="vision-mission">
-                    <h3>Our Vision</h3>
-                    <p>To make Idukki's world-class spices accessible globally while preserving the environment, empowering farmers, and celebrating Kerala's spice heritage.</p>
-                </div>
-                
-                <div class="page-header" style="margin-top: 4rem;">
-                    <h2 class="page-title">Our Values</h2>
-                </div>
-                <div class="diff-grid">
-                    <div class="diff-card">
-                        <h3>Uncompromised Quality</h3>
-                        <p>Only carefully handpicked, naturally grown spices—free from adulteration and unnecessary processing.</p>
-                    </div>
-                    <div class="diff-card">
-                        <h3>Pure & Authentic</h3>
-                        <p>Our spices retain their natural oils, aroma, and flavor, just as nature intended.</p>
-                    </div>
-                    <div class="diff-card">
-                        <h3>Sustainably Sourced</h3>
-                        <p>We support eco-friendly farming practices and fair partnerships with small farmers in Idukki.</p>
-                    </div>
-                    <div class="diff-card">
-                        <h3>Fresh from the Source</h3>
-                        <p>Direct sourcing ensures maximum freshness, better traceability, and superior taste.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div id="products-page" class="page-content">
-        <section class="products-page">
-            <div class="container">
-                <div class="page-header">
-                    <h2 class="page-title">Our Signature Products</h2>
-                    <p style="max-width: 700px; margin: 1rem auto; color: var(--text-light); font-size: 1.1rem;">
-                        Handpicked from the fertile hills of Idukki, each product embodies the purity and richness of Kerala's spice heritage.
-                    </p>
-                </div>
-                <div class="product-grid">
-                    <div class="product-card">
-                        <div class="product-image">
-                             <img src="images/black-pepper.jpg" alt="Idukki Black Pepper">
-                        </div>
-                        <div class="product-info">
-                            <h3>Idukki Black Pepper</h3>
-                            <p class="product-subtitle">Idukki Gold</p>
-                            <p>Bold, aromatic, and rich in flavor. Our black pepper is sourced from the finest plantations in Idukki.</p>
-                            <ul class="product-features">
-                                <li>High piperine content</li>
-                                <li>Strong aroma and bold flavor</li>
-                                <li>Carefully sun-dried</li>
-                                <li>Available in whole and ground forms</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <div class="product-image">
-                             <img src="images/cardamom.jpg" alt="Green Cardamom">
-                        </div>
-                        <div class="product-info">
-                            <h3>Green & Dried Cardamom</h3>
-                            <p class="product-subtitle">Queen of Spices</p>
-                            <p>Naturally sweet, fragrant, and premium grade. Our cardamom pods are harvested at peak maturity.</p>
-                            <ul class="product-features">
-                                <li>High essential oil content</li>
-                                <li>Intense natural fragrance</li>
-                                <li>Bold green color</li>
-                                <li>Export quality grading</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <div class="product-image">
-                             <img src="images/coffee.jpg" alt="Idukki Coffee">
-                        </div>
-                        <div class="product-info">
-                            <h3>Idukki Coffee</h3>
-                            <p class="product-subtitle">High Altitude Grown</p>
-                            <p>Smooth, earthy, and grown at high altitudes. Our coffee beans benefit from the cool mountain climate.</p>
-                            <ul class="product-features">
-                                <li>Grown above 3000 feet elevation</li>
-                                <li>Shade-grown beans</li>
-                                <li>Smooth, balanced flavor</li>
-                                <li>Low acidity</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="contact-cta">
-                    <h3>Interested in Our Products?</h3>
-                    <p>Contact us for detailed specifications, pricing, and bulk orders.</p>
-                    <a href="#" onclick="showPage('contact'); return false;" class="cta-button" style="margin-top: 1.5rem;">Get In Touch</a>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div id="contact-page" class="page-content">
-        <section class="contact-page">
-            <div class="container contact-container">
-                <div class="page-header">
-                    <h2 class="page-title">Get In Touch</h2>
-                </div>
-                <p class="contact-intro">
-                    We're here to answer your questions and help you bring the finest spices from Idukki to your business. Whether you're interested in bulk orders, pricing information, or learning more about our products, we'd love to hear from you.
-                </p>
-                <div class="contact-grid">
-                    <div class="contact-card">
-                        <h3>Location</h3>
-                        <div class="contact-detail">
-                            <strong>Head Office</strong>
-                            Idukki, Kerala, India<br>
-                            God's Own Spice Garden
-                        </div>
-                    </div>
-                    <div class="contact-card">
-                        <h3>Email Us</h3>
-                        <div class="contact-detail">
-                            <strong>Business Inquiries</strong>
-                            <a href="mailto:info.spicehavenexports@gmail.com">info.spicehavenexports@gmail.com</a>
-                        </div>
-                        <div class="contact-detail" style="margin-top: 1.5rem;">
-                            We typically respond within 24 hours
-                        </div>
-                    </div>
-                </div>
-                <div class="contact-cta">
-                    <h3>Ready to Order?</h3>
-                    <p>Send us an email with your requirements and we'll get back to you with detailed information about our products, pricing, and shipping options.</p>
-                </div>
-            </div>
-        </section>
-    </div>
+        </div>
+    </section>
 
     <footer>
         <div class="container">
             <p>&copy; 2024 Spice Haven Exports. All rights reserved.</p>
-            <p style="margin-top: 0.5rem; font-size: 0.9rem;">Making Idukki's world-class spices accessible globally.</p>
         </div>
     </footer>
-
-    <script>
-        function showPage(pageName) {
-            document.querySelectorAll('.page-content').forEach(page => {
-                page.classList.remove('active');
-            });
-            document.getElementById(pageName + '-page').classList.add('active');
-            document.getElementById('nav-menu').classList.remove('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function toggleMenu() {
-            const menu = document.getElementById('nav-menu');
-            menu.classList.toggle('active');
-        }
-
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            const currentScroll = window.pageYOffset;
-            if (currentScroll > 100) {
-                header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
-            } else {
-                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)';
-            }
-        });
-
-        // HERO SLIDER LOGIC
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        
-        // Change slide every 5000 milliseconds (5 seconds)
-        if(slides.length > 0) {
-            setInterval(() => {
-                // Remove active class from current
-                slides[currentSlide].classList.remove('active');
-                
-                // Move to next slide
-                currentSlide = (currentSlide + 1) % slides.length;
-                
-                // Add active class to new slide
-                slides[currentSlide].classList.add('active');
-            }, 5000);
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
