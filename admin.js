@@ -145,7 +145,7 @@ addProductForm.addEventListener('submit', async (e) => {
 
 existingProductsList.addEventListener('click', async (e) => {
     if (e.target.classList.contains('delete-button')) {
-        const productId = e.target.dataset..id;
+        const productId = e.target.dataset.id;
         
         if (confirm(`Are you sure you want to delete product ID ${productId}?`)) {
             const { data: { session }, error: sessionError } = await dbClient.auth.getSession();
