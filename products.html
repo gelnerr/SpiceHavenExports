@@ -84,87 +84,50 @@
             </div>
         </section>
 
+        <section class="product-screen product-catalog-screen" id="all-products-container">
+            <div class="catalog-card">
+                <div class="page-header" style="margin-bottom: 2rem;">
+                    <h2 class="page-title">Our Full Catalog</h2>
+                </div>
+                <div id="dynamic-product-grid" class="product-grid">
+                    <p id="loading-message">Loading our finest products...</p>
+                </div>
+            </div>
+        </section>
+
     </div>
 
     <script src="script.js"></script>
     <script>
-        // Additional Script just for this page to handle the "Visible" animation
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.querySelector('.glass-card').classList.add('visible');
-                    
-                    // Update dots
-                    const dots = document.querySelectorAll('.dot');
-                    const sections = document.querySelectorAll('.product-screen');
-                    const index = Array.from(sections).indexOf(entry.target);
-                    
-                    dots.forEach(d => d.classList.remove('active'));
-                    if(dots[index]) dots[index].classList.add('active');
-                }
-            });
-        }, { threshold: 0.5 }); // Trigger when 50% of the section is visible
-
-        document.querySelectorAll('.product-screen').forEach(section => {
-            observer.observe(section);
-        });
-
-        function scrollToSection(index) {
-            const container = document.getElementById('mainScroll');
-            const sections = document.querySelectorAll('.product-screen');
-            sections[index].scrollIntoView({ behavior: 'smooth' });
-        }
-    </script>
-    <section id="all-products-container" style="padding: 5rem 0; background: var(--cream);">
-        <div class="container">
-            <div class="page-header">
-                <h2 class="page-title">Our Full Catalog</h2>
-                <p style="margin-top:1rem; color:var(--text-light)">A comprehensive list of our export-quality products.</p>
-            </div>
-            <div id="dynamic-product-grid" class="product-grid" style="margin-top: 3rem;">
-                <!-- Products will be loaded here dynamically -->
-                <p id="loading-message">Loading our finest products...</p>
-            </div>
-        </div>
-    </section>
-
-    <script>
-        // --- SCRIPT TO FETCH AND DISPLAY DYNAMIC PRODUCTS ---
+        // --- COMBINED SCRIPT FOR PRODUCTS PAGE ---
 
         document.addEventListener('DOMContentLoaded', () => {
+            // --- 1. DYNAMIC PRODUCT FETCHING ---
             const productGrid = document.getElementById('dynamic-product-grid');
             const loadingMessage = document.getElementById('loading-message');
-            
             const apiUrl = '/.netlify/functions/get-products';
 
             fetch(apiUrl)
                 .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`Network response was not ok: ${response.statusText}`);
-                    }
+                    if (!response.ok) throw new Error(`Network response was not ok: ${response.statusText}`);
                     return response.json();
                 })
                 .then(products => {
-                    loadingMessage.style.display = 'none';
+                    if (loadingMessage) loadingMessage.style.display = 'none';
                     
                     if (products && products.length > 0) {
                         products.forEach(product => {
                             const card = document.createElement('div');
                             card.className = 'product-card';
-
-                            const name = product.name ? product.name.replace(/</g, "&lt;").replace(/>/g, "&gt;") : 'Unnamed Product';
-                            const description = product.description ? product.description.replace(/</g, "&lt;").replace(/>/g, "&gt;") : 'No description available.';
+                            const name = product.name ? product.name.replace(/</g, "&lt;") : 'Unnamed Product';
+                            const description = product.description ? product.description.replace(/</g, "&lt;") : 'No description available.';
                             const imageUrl = product.image_url || 'images/placeholder-story.jpg';
-
                             card.innerHTML = `
-                                <div class="product-image">
-                                    <img src="${imageUrl}" alt="${name}">
-                                </div>
+                                <div class="product-image"><img src="${imageUrl}" alt="${name}"></div>
                                 <div class="product-info">
                                     <h3>${name}</h3>
                                     <p style="color: var(--text-light); font-size: 1rem; line-height: 1.5;">${description}</p>
-                                </div>
-                            `;
+                                </div>`;
                             productGrid.appendChild(card);
                         });
                     } else {
@@ -173,10 +136,57 @@
                 })
                 .catch(error => {
                     console.error('Error fetching products:', error);
-                    loadingMessage.style.display = 'none';
-                    productGrid.innerHTML = '<p style="color: red;">Sorry, we couldn\'t load our products at this time. Please try again later.</p>';
+                    if(loadingMessage) loadingMessage.style.display = 'none';
+                    productGrid.innerHTML = '<p style="color: red;">Sorry, we couldn\'t load our products at this time.</p>';
+                })
+                .finally(() => {
+                    // --- 2. SETUP SCROLL LOGIC (AFTER FETCH) ---
+                    // Now that all sections are in the DOM, set up the observers and dots
+                    setupScrollFeatures();
                 });
+
+            // --- 3. SCROLL FEATURES SETUP FUNCTION ---
+            function setupScrollFeatures() {
+                const sections = document.querySelectorAll('.product-screen');
+                const scrollIndicator = document.querySelector('.scroll-indicator');
+                
+                // Clear existing dots and rebuild them dynamically
+                scrollIndicator.innerHTML = '';
+                sections.forEach((_, index) => {
+                    const dot = document.createElement('div');
+                    dot.className = 'dot';
+                    dot.onclick = () => scrollToSection(index);
+                    scrollIndicator.appendChild(dot);
+                });
+
+                const dots = document.querySelectorAll('.dot');
+                if(dots.length > 0) dots[0].classList.add('active');
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            // Animate glass-card if it exists
+                            const glassCard = entry.target.querySelector('.glass-card');
+                            if(glassCard) glassCard.classList.add('visible');
+
+                            // Update active dot
+                            const index = Array.from(sections).indexOf(entry.target);
+                            dots.forEach(d => d.classList.remove('active'));
+                            if (dots[index]) dots[index].classList.add('active');
+                        }
+                    });
+                }, { threshold: 0.5 });
+
+                sections.forEach(section => observer.observe(section));
+            }
         });
+
+        function scrollToSection(index) {
+            const sections = document.querySelectorAll('.product-screen');
+            if (sections[index]) {
+                sections[index].scrollIntoView({ behavior: 'smooth' });
+            }
+        }
     </script>
 </body>
 </html>
