@@ -1,0 +1,80 @@
+/* admin-style.css */
+
+.admin-form {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--deep-green);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.error-message {
+    color: #d9534f;
+    margin-top: 1rem;
+}
+
+.status-message {
+    margin-top: 1rem;
+    font-weight: 500;
+}
+
+.form-container {
+    margin-bottom: 4rem;
+}
+
+.product-list-container h3 {
+    color: var(--deep-green);
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+#existing-products-list .product-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background: var(--white);
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+#existing-products-list .product-item-name {
+    font-weight: 600;
+}
+
+#existing-products-list .delete-button {
+    background: #d9534f;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#existing-products-list .delete-button:hover {
+    background: #c9302c;
+}
