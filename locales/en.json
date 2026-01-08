@@ -88,5 +88,6 @@
     "email_inquiries": "Business Inquiries",
     "email_response_time": "We typically respond within 24 hours",
     "ready_to_order_title": "Ready to Order?",
-    "ready_to_order_desc": "Send us an email with your requirements and we'll get back to you with detailed information about our products, pricing, and shipping options."
+    "ready_to_order_desc": "Send us an email with your requirements and we'll get back to you with detailed information about our products, pricing, and shipping options.",
+    "menu_item_languages": "Languages"
 }

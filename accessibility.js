@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="accessibility-widget">
             <div class="accessibility-menu">
                 <div class="menu-item" id="languages-menu-item">
-                    <span>Languages</span>
-                    <i class="fa-solid fa-chevron-right"></i>
+                    <i class="fa-solid fa-chevron-left"></i>
+                    <span data-i18n="menu_item_languages">Languages</span>
                     <div class="sub-menu">
                         <div class="sub-menu-item" data-lang="en">English</div>
                         <div class="sub-menu-item" data-lang="ml">മലയാളം</div>

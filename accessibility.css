@@ -50,7 +50,7 @@
 
 .menu-item {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row-reverse; /* Reverses order of children, so arrow appears first */
     align-items: center;
     padding: 12px 15px;
     border-radius: 5px;
@@ -63,9 +63,11 @@
     background-color: var(--cream);
 }
 
-.menu-item .fa-chevron-right {
+/* Specific styling for the chevron icon within menu items */
+.menu-item .fa-chevron-left {
     font-size: 0.8em;
     opacity: 0.6;
+    margin-right: 10px; /* Add some space between arrow and text */
 }
 
 .sub-menu {
