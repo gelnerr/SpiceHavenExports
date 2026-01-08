@@ -20,6 +20,7 @@ const logoutButton = document.getElementById('logout-button');
 const addProductForm = document.getElementById('add-product-form');
 const addProductMessage = document.getElementById('add-product-message');
 const existingProductsList = document.getElementById('existing-products-list');
+const productImageFile = document.getElementById('product-image-file'); // New: File input element
 
 // --- SUPABASE CLIENT ---
 const { createClient } = supabase;
@@ -112,10 +113,46 @@ addProductForm.addEventListener('submit', async (e) => {
     }
 
     const token = session.access_token;
+    
+    let imageUrl = null; // Initialize imageUrl to null
+
+    // Handle file upload if a file is selected
+    const imageFile = productImageFile.files[0];
+    if (imageFile) {
+        const fileExtension = imageFile.name.split('.').pop();
+        const fileName = `${Date.now()}.${fileExtension}`; // Unique filename
+        const filePath = `product_images/${fileName}`; // Path in your Supabase storage bucket
+
+        try {
+            const { error: uploadError } = await dbClient.storage
+                .from('product-images')
+                .upload(filePath, imageFile, {
+                    cacheControl: '3600',
+                    upsert: false // Don't overwrite if file exists
+                });
+
+            if (uploadError) {
+                throw new Error(`Image upload failed: ${uploadError.message}`);
+            }
+
+            // Get public URL of the uploaded image
+            const { data: publicUrlData } = dbClient.storage
+                .from('product-images')
+                .getPublicUrl(filePath);
+            
+            imageUrl = publicUrlData.publicUrl;
+
+        } catch (error) {
+            addProductMessage.textContent = `Error: ${error.message}`;
+            addProductMessage.style.color = 'red';
+            return; // Stop execution if upload fails
+        }
+    }
+
     const newProduct = {
         name: document.getElementById('product-name').value,
         description: document.getElementById('product-description').value,
-        image_url: document.getElementById('product-image-url').value,
+        image_url: imageUrl, // Use the uploaded image URL or null
     };
 
     try {
