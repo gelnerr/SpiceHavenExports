@@ -6,6 +6,8 @@
     <title>Spice Haven Exports | Pure Aroma. True Flavor.</title>
     <meta name="description" content="Premium spices from Idukki, Kerala. Exporting authentic pepper, cardamom, and coffee.">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="accessibility.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <header>
@@ -14,15 +16,15 @@
                 <img src="logo.png" alt="Spice Haven Exports Logo" class="logo-img">
                 <div class="logo-text">
                     <h1>Spice Haven Exports</h1>
-                    <p>Pure Aroma. True Flavor.</p>
+                    <p data-i18n="hero_tagline">Pure Aroma. True Flavor.</p>
                 </div>
             </a>
             <button class="mobile-menu" onclick="toggleMenu()">☰</button>
             <ul id="nav-menu">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="products.html">Products</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="index.html" class="active" data-i18n="nav_home">Home</a></li>
+                <li><a href="about.html" data-i18n="nav_about">About</a></li>
+                <li><a href="products.html" data-i18n="nav_products">Products</a></li>
+                <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -35,21 +37,21 @@
         </div>
         <div class="hero-overlay"></div>
         <div class="container hero-content">
-            <h2>Spice Haven Exports</h2>
-            <p class="tagline">Pure Aroma. True Flavor.</p>
-            <p class="subtitle">From The Misty Hills Of Idukki To Kitchens Around The World</p>
-            <a href="contact.html" class="cta-button">Get In Touch</a>
+            <h2 data-i18n="hero_title">Spice Haven Exports</h2>
+            <p class="tagline" data-i18n="hero_tagline">Pure Aroma. True Flavor.</p>
+            <p class="subtitle" data-i18n="hero_subtitle">From The Misty Hills Of Idukki To Kitchens Around The World</p>
+            <a href="contact.html" class="cta-button" data-i18n="hero_cta">Get In Touch</a>
         </div>
     </section>
 
     <section style="padding: 5rem 0; background: var(--white);">
         <div class="container">
             <div class="page-header">
-                <h2 class="page-title">Welcome to Spice Haven</h2>
+                <h2 class="page-title" data-i18n="welcome_title">Welcome to Spice Haven</h2>
             </div>
             <div class="about-intro">
-                <p>Spice Haven Exports is dedicated to bringing the finest pepper, cardamom, and coffee from the pristine Western Ghats of Idukki, Kerala to global markets.</p>
-                <p>Rooted in tradition and guided by sustainability, we work closely with local farmers to ensure every product reflects the rich soil of Idukki—God's Own Spice Garden.</p>
+                <p data-i18n="welcome_p1">Spice Haven Exports is dedicated to bringing the finest pepper, cardamom, and coffee from the pristine Western Ghats of Idukki, Kerala to global markets.</p>
+                <p data-i18n="welcome_p2">Rooted in tradition and guided by sustainability, we work closely with local farmers to ensure every product reflects the rich soil of Idukki—God's Own Spice Garden.</p>
             </div>
         </div>
     </section>
@@ -57,58 +59,73 @@
     <section class="products-section">
         <div class="container">
             <div class="page-header">
-                <h2 class="page-title">Our Signature Spices</h2>
-                <p style="margin-top:1rem; color:var(--text-light)">Direct from the plantation to your port.</p>
+                <h2 class="page-title" data-i18n="signature_spices_title">Our Signature Spices</h2>
+                <p style="margin-top:1rem; color:var(--text-light)" data-i18n="signature_spices_subtitle">Direct from the plantation to your port.</p>
             </div>
             <div class="product-grid">
                 <div class="product-card">
                     <div class="product-image"><img src="images/black-pepper.jpg" alt="Idukki Black Pepper"></div>
                     <div class="product-info">
-                        <h3>Idukki Black Pepper</h3>
-                        <p class="product-subtitle">Idukki Gold</p>
-                        <ul class="product-features"><li>High piperine content</li><li>Bold flavor</li></ul>
+                        <h3 data-i18n="pepper_title">Idukki Black Pepper</h3>
+                        <p class="product-subtitle" data-i18n="pepper_subtitle">Idukki Gold</p>
+                        <ul class="product-features">
+                            <li data-i18n="pepper_feature1">High piperine content</li>
+                            <li data-i18n="pepper_feature2">Bold flavor</li>
+                        </ul>
                     </div>
                 </div>
                 <div class="product-card">
                     <div class="product-image"><img src="images/cardamom.jpg" alt="Green Cardamom"></div>
                     <div class="product-info">
-                        <h3>Green Cardamom</h3>
-                        <p class="product-subtitle">Queen of Spices</p>
-                        <ul class="product-features"><li>High oil content</li><li>Intense aroma</li></ul>
+                        <h3 data-i18n="cardamom_title">Green Cardamom</h3>
+                        <p class="product-subtitle" data-i18n="cardamom_subtitle">Queen of Spices</p>
+                        <ul class="product-features">
+                            <li data-i18n="cardamom_feature1">High oil content</li>
+                            <li data-i18n="cardamom_feature2">Intense aroma</li>
+                        </ul>
                     </div>
                 </div>
                 <div class="product-card">
                     <div class="product-image"><img src="images/coffee.jpg" alt="Idukki Coffee"></div>
                     <div class="product-info">
-                        <h3>High Range Coffee</h3>
-                        <p class="product-subtitle">Arabica & Robusta</p>
-                        <ul class="product-features"><li>Shade-grown</li><li>Rich aromatic profile</li></ul>
+                        <h3 data-i18n="coffee_title">High Range Coffee</h3>
+                        <p class="product-subtitle" data-i18n="coffee_subtitle">Arabica & Robusta</p>
+                        <ul class="product-features">
+                            <li data-i18n="coffee_feature1">Shade-grown</li>
+                            <li data-i18n="coffee_feature2">Rich aromatic profile</li>
+                        </ul>
                     </div>
                 </div>
             </div>
             <div style="text-align: center; margin-top: 3rem;">
-                <a href="products.html#all-products-container" class="cta-button">View All Details</a>
+                <a href="products.html#all-products-container" class="cta-button" data-i18n="view_all_details">View All Details</a>
             </div>
         </div>
     </section>
 
     <section style="padding: 5rem 0; background: var(--white);">
         <div class="container">
-            <div class="page-header"><h2 class="page-title">What Makes Us Different</h2></div>
+            <div class="page-header"><h2 class="page-title" data-i18n="what_makes_us_different_title">What Makes Us Different</h2></div>
             <div class="diff-grid">
-                <div class="diff-card"><h3>Uncompromised Quality</h3><p>Only carefully handpicked, naturally grown spices.</p></div>
-                <div class="diff-card"><h3>Pure & Authentic</h3><p>Our spices retain their natural oils, aroma, and flavor.</p></div>
-                <div class="diff-card"><h3>Sustainably Sourced</h3><p>We support eco-friendly farming practices and fair partnerships.</p></div>
-                <div class="diff-card"><h3>Fresh from the Source</h3><p>Direct sourcing ensures maximum freshness.</p></div>
+                <div class="diff-card"><h3 data-i18n="quality_title">Uncompromised Quality</h3><p data-i18n="quality_desc">Only carefully handpicked, naturally grown spices.</p></div>
+                <div class="diff-card"><h3 data-i18n="authentic_title">Pure & Authentic</h3><p data-i18n="authentic_desc">Our spices retain their natural oils, aroma, and flavor.</p></div>
+                <div class="diff-card"><h3 data-i18n="sustainable_title">Sustainably Sourced</h3><p data-i18n="sustainable_desc">We support eco-friendly farming practices and fair partnerships.</p></div>
+                <div class="diff-card"><h3 data-i18n="fresh_title">Fresh from the Source</h3><p data-i18n="fresh_desc">Direct sourcing ensures maximum freshness.</p></div>
             </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 Spice Haven Exports. All rights reserved.</p>
+            <p data-i18n="footer_copyright">&copy; 2024 Spice Haven Exports. All rights reserved.</p>
         </div>
     </footer>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/23.7.11/i18next.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-http-backend/2.4.2/i18nextHttpBackend.min.js"></script>
+    
     <script src="script.js"></script>
+    <script src="i18n.js"></script>
+    <script src="accessibility.js"></script>
 </body>
 </html>

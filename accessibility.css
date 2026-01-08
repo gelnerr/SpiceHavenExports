@@ -1,0 +1,59 @@
+/* accessibility.css */
+
+.accessibility-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1010; /* Above most other elements */
+}
+
+.accessibility-button {
+    width: 60px;
+    height: 60px;
+    background-color: var(--deep-green);
+    color: var(--white);
+    border-radius: 50%;
+    border: none;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease-in-out;
+}
+
+.accessibility-button:hover {
+    transform: scale(1.1);
+}
+
+.accessibility-menu {
+    position: absolute;
+    bottom: 75px; /* Position above the button */
+    right: 0;
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    width: 200px;
+    padding: 10px;
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    gap: 5px;
+}
+
+.accessibility-menu.active {
+    display: flex;
+}
+
+.language-switcher {
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.language-switcher:hover {
+    background-color: var(--cream);
+}
