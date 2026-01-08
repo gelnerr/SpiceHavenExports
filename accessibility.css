@@ -50,7 +50,7 @@
 
 .menu-item {
     display: flex;
-    flex-direction: row-reverse; /* Reverses order of children, so arrow appears first */
+    justify-content: space-between; /* Puts space between items */
     align-items: center;
     padding: 12px 15px;
     border-radius: 5px;
@@ -67,7 +67,7 @@
 .menu-item .fa-chevron-left {
     font-size: 0.8em;
     opacity: 0.6;
-    margin-right: 10px; /* Add some space between arrow and text */
+    /* Removed margin-right, space-between will handle separation */
 }
 
 .sub-menu {
