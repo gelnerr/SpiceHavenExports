@@ -4,7 +4,7 @@
     position: fixed;
     bottom: 20px;
     right: 20px;
-    z-index: 1010; /* Above most other elements */
+    z-index: 1010;
 }
 
 .accessibility-button {
@@ -29,23 +29,68 @@
 
 .accessibility-menu {
     position: absolute;
-    bottom: 75px; /* Position above the button */
+    bottom: 75px;
     right: 0;
     background-color: var(--white);
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.15);
     width: 200px;
-    padding: 10px;
-    display: none; /* Hidden by default */
-    flex-direction: column;
-    gap: 5px;
+    padding: 5px;
+    visibility: hidden; /* Use visibility instead of display for transitions */
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.2s ease-in-out;
 }
 
 .accessibility-menu.active {
-    display: flex;
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
 }
 
-.language-switcher {
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.menu-item:hover {
+    background-color: var(--cream);
+}
+
+.menu-item .fa-chevron-right {
+    font-size: 0.8em;
+    opacity: 0.6;
+}
+
+.sub-menu {
+    position: absolute;
+    bottom: 0;
+    right: 105%; /* Position to the left of the main menu */
+    width: 150px;
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    padding: 5px;
+    visibility: hidden;
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    transition: all 0.2s ease-in-out;
+}
+
+.menu-item.show-sub-menu .sub-menu {
+    visibility: visible;
+    opacity: 1;
+}
+
+.sub-menu-item {
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
@@ -54,6 +99,6 @@
     transition: background-color 0.2s;
 }
 
-.language-switcher:hover {
+.sub-menu-item:hover {
     background-color: var(--cream);
 }

@@ -5,7 +5,8 @@ async function initializeI18next() {
     await i18next
         .use(i18nextHttpBackend)
         .init({
-            lng: 'en', // default language
+            // Get language from localStorage or default to 'en'
+            lng: localStorage.getItem('language') || 'en',
             fallbackLng: 'en',
             debug: true, // Set to false in production
             backend: {
@@ -29,6 +30,8 @@ function updateContent() {
 // This function changes the language and updates the content
 async function changeLanguage(lng) {
     await i18next.changeLanguage(lng);
+    // Save the new language selection to localStorage
+    localStorage.setItem('language', lng);
     updateContent();
 }
 
