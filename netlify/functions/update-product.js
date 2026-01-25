@@ -26,7 +26,7 @@ exports.handler = async function(event, context) {
 
         const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey);
 
-        const { id, name, description, price, image_url } = JSON.parse(event.body);
+        const { id, name, description, price, unit, image_url } = JSON.parse(event.body);
 
         if (!id) {
             return { statusCode: 400, body: 'Bad Request: Product ID is required' };
@@ -39,6 +39,7 @@ exports.handler = async function(event, context) {
         if (name) updates.name = name;
         if (description !== undefined) updates.description = description;
         if (price !== undefined) updates.price = price;
+        if (unit !== undefined) updates.unit = unit;
         if (image_url) updates.image_url = image_url;
 
         const { data: updatedProduct, error: updateError } = await supabaseAdmin

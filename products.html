@@ -7,6 +7,27 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="accessibility.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .price-tag {
+            background-color: var(--cream);
+            color: var(--deep-green);
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 1rem;
+            border: 1px solid var(--gold);
+            font-size: 1.1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .price-tag .unit {
+            font-size: 0.8em;
+            color: var(--text-light);
+            font-weight: normal;
+        }
+    </style>
 </head>
 <body class="snap-scroll"> <header style="position: fixed; width: 100%; top: 0; z-index: 1000;">
         <nav class="container">
@@ -34,7 +55,9 @@
             <div class="glass-card visible"> <h2 data-i18n="products_hero_title">Our Signature Collection</h2>
                 <span class="subtitle" data-i18n="products_hero_subtitle">Handpicked from the Hills of Idukki</span>
                 <p data-i18n="products_hero_desc">We don't sell everything. We only sell what we can grow perfectly. Scroll down to experience the purity of Kerala's finest spices.</p>
-                <p style="font-size: 0.9rem; margin-top: 1rem;" data-i18n="products_scroll_prompt">⬇ Scroll to explore</p>
+                <div style="margin-top: 2rem;">
+                    <a href="#all-products-container" class="cta-button" style="background: var(--deep-green); border-color: var(--deep-green);">View Full Catalog</a>
+                </div>
             </div>
         </section>
 
@@ -125,39 +148,43 @@
                             const name = product.name ? product.name.replace(/</g, "&lt;") : 'Unnamed Product';
                             const description = product.description ? product.description.replace(/</g, "&lt;") : 'No description available.';
                             const imageUrl = product.image_url || 'images/placeholder-story.jpg';
-                            const priceHtml = product.price ? `<p style="color: var(--deep-green); font-weight: bold; margin-top: 0.5rem;">₹${product.price}</p>` : '';
+                            
+                            const unitDisplay = product.unit ? `<span class="unit">/ ${product.unit}</span>` : '';
+                            const priceHtml = product.price 
+                                ? `<div class="price-tag">₹${product.price} ${unitDisplay}</div>` 
+                                : '';
 
                             // 1. Add to Grid
                             const card = document.createElement('div');
                             card.className = 'product-card';
                             card.innerHTML = `
                                 <div class="product-image"><img src="${imageUrl}" alt="${name}"></div>
-                                <div class="product-info">
+                                <div class="product-info" style="display: flex; flex-direction: column; height: 100%;">
                                     <h3>${name}</h3>
-                                    <p style="color: var(--text-light); font-size: 1rem; line-height: 1.5;">${description}</p>
+                                    <p style="color: var(--text-light); font-size: 1rem; line-height: 1.5; flex-grow: 1;">${description}</p>
                                     ${priceHtml}
                                 </div>`;
                             productGrid.appendChild(card);
 
                             // 2. Update Hero Sections if match found
                             // Helper to update CTA
-                            const updateHeroPrice = (sectionId, price) => {
+                            const updateHeroPrice = (sectionId, price, unit) => {
                                 const section = document.getElementById(sectionId);
                                 if (section && price) {
                                     const cta = section.querySelector('.cta-button');
                                     if (cta) {
-                                        cta.textContent = `Buy Now - ₹${price}`;
+                                        cta.textContent = `Buy Now - ₹${price} / ${unit || 'kg'}`;
                                         cta.style.background = 'var(--deep-green)';
                                     }
                                 }
                             };
 
                             if (name.toLowerCase().includes('black pepper') && name.toLowerCase().includes('idukki')) {
-                                updateHeroPrice('product-pepper', product.price);
+                                updateHeroPrice('product-pepper', product.price, product.unit);
                             } else if (name.toLowerCase().includes('green cardamom')) {
-                                updateHeroPrice('product-cardamom', product.price);
+                                updateHeroPrice('product-cardamom', product.price, product.unit);
                             } else if (name.toLowerCase().includes('high range coffee')) {
-                                updateHeroPrice('product-coffee', product.price);
+                                updateHeroPrice('product-coffee', product.price, product.unit);
                             }
                         });
                     } else {

@@ -175,6 +175,7 @@ addProductForm.addEventListener('submit', async (e) => {
         name: document.getElementById('product-name').value,
         description: document.getElementById('product-description').value,
         price: document.getElementById('product-price').value,
+        unit: document.getElementById('product-unit').value,
         image_url: imageUrl,
     };
 
@@ -265,6 +266,7 @@ function enterEditMode(product) {
     document.getElementById('product-name').value = product.name || '';
     document.getElementById('product-description').value = product.description || '';
     document.getElementById('product-price').value = product.price || '';
+    document.getElementById('product-unit').value = product.unit || 'kg';
     
     // Update UI
     formTitle.textContent = `Edit Product: ${product.name}`;
@@ -279,6 +281,7 @@ function enterEditMode(product) {
 // Helper: Reset Form (Exit Edit Mode)
 function resetForm() {
     addProductForm.reset();
+    document.getElementById('product-unit').value = 'kg'; // Reset default
     productIdInput.value = '';
     currentEditingProduct = null;
     
