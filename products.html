@@ -8,24 +8,54 @@
     <link rel="stylesheet" href="accessibility.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
+        .product-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative; /* Enabled absolute positioning for children */
+            display: flex;
+            flex-direction: column;
+        }
+        .product-info {
+            padding: 2rem;
+            padding-bottom: 4rem; /* Extra space for the price tag */
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-info h3 {
+             color: var(--deep-green);
+             font-size: 1.6rem;
+             margin-bottom: 0.5rem;
+        }
+        .product-info p {
+            color: #666; /* var(--text-light) */
+            font-size: 1rem;
+            line-height: 1.5;
+        }
         .price-tag {
-            background-color: #faf8f3; /* Hardcoded cream */
-            color: #1a4d2e; /* Hardcoded deep-green */
-            font-weight: bold;
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            display: inline-flex;
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background-color: #1a4d2e; /* Deep Green */
+            color: #ffffff; /* White text */
+            font-weight: 600;
+            padding: 0.5rem 1.2rem;
+            border-radius: 8px; /* Softer corners but not fully round */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            font-size: 1.1rem;
+            display: flex;
             align-items: center;
             gap: 5px;
-            margin-top: 1rem;
-            border: 1px solid #c9a961; /* Hardcoded gold */
-            font-size: 1.1rem;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            z-index: 10;
         }
         .price-tag .unit {
-            font-size: 0.8em;
-            color: #666; /* Hardcoded text-light */
+            font-size: 0.85em;
+            color: #c9a961; /* Gold accent for unit */
             font-weight: normal;
+            margin-left: 2px;
         }
     </style>
 </head>
@@ -149,22 +179,27 @@
                             const description = product.description ? product.description.replace(/</g, "&lt;") : 'No description available.';
                             const imageUrl = product.image_url || 'images/placeholder-story.jpg';
                             
-                            const unitDisplay = product.unit ? `<span class="unit">/ ${product.unit}</span>` : '';
-                            // Check for null or undefined, allow 0
-                            const priceHtml = (product.price !== null && product.price !== undefined) 
-                                ? `<div class="price-tag">₹${product.price} ${unitDisplay}</div>` 
-                                : '';
+                            // Prepare Price HTML
+                            let priceHtml = '';
+                            if (product.price !== undefined && product.price !== null) {
+                                const unitDisplay = product.unit ? `<span class="unit"> / ${product.unit}</span>` : '';
+                                priceHtml = `<div class="price-tag">₹${product.price}${unitDisplay}</div>`;
+                            }
 
-                            // 1. Add to Grid
+                            // 1. Create Card
                             const card = document.createElement('div');
                             card.className = 'product-card';
+                            
+                            // Structure: Image + Info + Price Tag (absolute)
                             card.innerHTML = `
                                 <div class="product-image"><img src="${imageUrl}" alt="${name}"></div>
-                                <div class="product-info" style="display: flex; flex-direction: column; height: 100%;">
+                                <div class="product-info">
                                     <h3>${name}</h3>
-                                    <p style="color: var(--text-light); font-size: 1rem; line-height: 1.5; flex-grow: 1;">${description}</p>
-                                    ${priceHtml}
-                                </div>`;
+                                    <p>${description}</p>
+                                </div>
+                                ${priceHtml}
+                            `;
+                            
                             productGrid.appendChild(card);
 
                             // 2. Update Hero Sections if match found

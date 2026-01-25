@@ -104,7 +104,7 @@ async function fetchAndDisplayProducts() {
             item.innerHTML = `
                 <span class="product-item-name">
                     ${product.name.replace(/</g, "&lt;")}
-                    ${product.price ? `<span style="color:var(--gold); font-size:0.9em;">(₹${product.price})</span>` : ''}
+                    ${product.price ? `<span style="color:var(--gold); font-size:0.9em;">(₹${product.price} / ${product.unit || 'kg'})</span>` : ''}
                 </span>
                 <div class="actions">
                     <button class="edit-button" data-product="${productJson}" style="margin-right: 10px; background: var(--deep-green); color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 4px;">Edit</button>
