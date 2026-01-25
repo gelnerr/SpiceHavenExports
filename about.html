@@ -6,43 +6,44 @@
     <title>About Us | Spice Haven Exports</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="accessibility.css">
 </head>
 <body>
     <header>
         <nav class="container">
             <a href="index.html" class="logo-container">
                 <img src="logo.png" alt="Spice Haven Exports Logo" class="logo-img">
-                <div class="logo-text"><h1>Spice Haven Exports</h1><p>Pure Aroma. True Flavor.</p></div>
+                <div class="logo-text"><h1 data-i18n="hero_title">Spice Haven Exports</h1><p data-i18n="hero_tagline">Pure Aroma. True Flavor.</p></div>
             </a>
             <button class="mobile-menu" onclick="toggleMenu()">☰</button>
             <ul id="nav-menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html" class="active">About</a></li>
-                <li><a href="products.html">Products</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+                <li><a href="about.html" class="active" data-i18n="nav_about">About</a></li>
+                <li><a href="products.html" data-i18n="nav_products">Products</a></li>
+                <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
     <section class="hero-about">
         <div class="hero-content">
-            <h2 class="hero-title">Rooted in Tradition, Grown with Passion.</h2>
-            <p class="hero-subtitle">Bringing the Soul of Kerala's Spice Gardens to Your Kitchen.</p>
+            <h2 class="hero-title" data-i18n="about_hero_title">Rooted in Tradition, Grown with Passion.</h2>
+            <p class="hero-subtitle" data-i18n="about_hero_subtitle">Bringing the Soul of Kerala's Spice Gardens to Your Kitchen.</p>
         </div>
     </section>
 
     <section class="about-content">
         <div class="container">
             <div class="page-header">
-                <h2 class="page-title">About Spice Haven Exports</h2>
+                <h2 class="page-title" data-i18n="about_page_title">About Spice Haven Exports</h2>
             </div>
             <div class="about-intro">
-                <p>Spice Haven Exports is a small-scale, quality-driven enterprise dedicated to bringing the finest pepper, cardamom, coffee, and select spices from the pristine Western Ghats of Idukki, Kerala to global markets.</p>
-                <p>Rooted in tradition and guided by sustainability, we work closely with local farmers to ensure every product reflects the rich soil, pure climate, and timeless heritage of Idukki—often called God's Own Spice Garden.</p>
+                <p data-i18n="about_intro_p1">Spice Haven Exports is a small-scale, quality-driven enterprise dedicated to bringing the finest pepper, cardamom, coffee, and select spices from the pristine Western Ghats of Idukki, Kerala to global markets.</p>
+                <p data-i18n="about_intro_p2">Rooted in tradition and guided by sustainability, we work closely with local farmers to ensure every product reflects the rich soil, pure climate, and timeless heritage of Idukki—often called God's Own Spice Garden.</p>
             </div>
             <div class="vision-mission">
-                <h3>Our Vision</h3>
-                <p>To make Idukki's world-class spices accessible globally while preserving the environment, empowering farmers, and celebrating Kerala's spice heritage.</p>
+                <h3 data-i18n="vision_title">Our Vision</h3>
+                <p data-i18n="vision_desc">To make Idukki's world-class spices accessible globally while preserving the environment, empowering farmers, and celebrating Kerala's spice heritage.</p>
             </div>
         </div>
     </section>
@@ -51,13 +52,12 @@
         <div class="container">
             <div class="story-grid">
                 <div class="story-image">
-                    <!-- Placeholder for an image of the founder or the region -->
                     <img src="images/placeholder-story.jpg" alt="Lush hills of Idukki, Kerala">
                 </div>
                 <div class="story-text">
-                    <h3 class="page-title">Our Story</h3>
-                    <p>Founded by a family with generations of farming heritage in Idukki, Spice Haven Exports was born from a simple desire: to share the authentic, unparalleled spices of our home with the world. We noticed that the true aroma and potency of our local spices were often lost by the time they reached global kitchens.</p>
-                    <p>We decided to change that. By partnering directly with local farmers who use sustainable, time-honored techniques, we ensure our spices are not just products, but a genuine taste of Kerala's rich agricultural legacy.</p>
+                    <h3 class="page-title" data-i18n="story_title">Our Story</h3>
+                    <p data-i18n="story_p1">Founded by a family with generations of farming heritage in Idukki, Spice Haven Exports was born from a simple desire: to share the authentic, unparalleled spices of our home with the world. We noticed that the true aroma and potency of our local spices were often lost by the time they reached global kitchens.</p>
+                    <p data-i18n="story_p2">We decided to change that. By partnering directly with local farmers who use sustainable, time-honored techniques, we ensure our spices are not just products, but a genuine taste of Kerala's rich agricultural legacy.</p>
                 </div>
             </div>
         </div>
@@ -66,28 +66,28 @@
     <section class="about-values">
         <div class="container">
             <div class="page-header">
-                <h2 class="page-title">Our Values</h2>
+                <h2 class="page-title" data-i18n="values_title">Our Values</h2>
             </div>
             <div class="diff-grid">
                 <div class="diff-card">
                     <div class="card-icon"><i class="fa-solid fa-gem"></i></div>
-                    <h3>Uncompromised Quality</h3>
-                    <p>Only carefully handpicked, naturally grown spices—free from adulteration.</p>
+                    <h3 data-i18n="quality_title">Uncompromised Quality</h3>
+                    <p data-i18n="values_quality_desc">Only carefully handpicked, naturally grown spices—free from adulteration.</p>
                 </div>
                 <div class="diff-card">
                     <div class="card-icon"><i class="fa-solid fa-certificate"></i></div>
-                    <h3>Pure & Authentic</h3>
-                    <p>Our spices retain their natural oils, aroma, and flavor, just as nature intended.</p>
+                    <h3 data-i18n="authentic_title">Pure & Authentic</h3>
+                    <p data-i18n="values_authentic_desc">Our spices retain their natural oils, aroma, and flavor, just as nature intended.</p>
                 </div>
                 <div class="diff-card">
                     <div class="card-icon"><i class="fa-solid fa-leaf"></i></div>
-                    <h3>Sustainably Sourced</h3>
-                    <p>We support eco-friendly farming practices and fair partnerships.</p>
+                    <h3 data-i18n="sustainable_title">Sustainably Sourced</h3>
+                    <p data-i18n="sustainable_desc">We support eco-friendly farming practices and fair partnerships.</p>
                 </div>
                 <div class="diff-card">
                     <div class="card-icon"><i class="fa-solid fa-seedling"></i></div>
-                    <h3>Fresh from the Source</h3>
-                    <p>Direct sourcing ensures maximum freshness and traceability.</p>
+                    <h3 data-i18n="fresh_title">Fresh from the Source</h3>
+                    <p data-i18n="fresh_desc">Direct sourcing ensures maximum freshness and traceability.</p>
                 </div>
             </div>
         </div>
@@ -95,9 +95,15 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 Spice Haven Exports. All rights reserved.</p>
+            <p data-i18n="footer_copyright">&copy; 2024 Spice Haven Exports. All rights reserved.</p>
         </div>
     </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/23.7.11/i18next.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-http-backend/2.4.2/i18nextHttpBackend.min.js"></script>
+    
     <script src="script.js"></script>
+    <script src="i18n.js"></script>
+    <script src="accessibility.js"></script>
 </body>
 </html>

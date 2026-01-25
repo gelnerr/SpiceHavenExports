@@ -105,7 +105,6 @@ nav a:hover, nav a.active { color: var(--gold); }
 .diff-card {
     background: var(--white); padding: 2.5rem 2rem; border-radius: 10px;
     border-left: 5px solid var(--gold); transition: transform 0.3s, box-shadow 0.3s; height: 100%;
-    text-align: center;
 }
 .diff-card:hover { transform: translateX(5px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
 .diff-card h3 { color: var(--deep-green); margin-bottom: 1rem; font-size: 1.4rem; }
@@ -286,4 +285,48 @@ body.snap-scroll { overflow: hidden; }
     .hero-about .hero-title {
         font-size: 2.2rem;
     }
+}
+
+/* --- DYNAMIC CATALOG STYLES --- */
+.product-catalog-screen {
+    background: var(--cream); /* Use a solid background color */
+}
+
+/* Remove the dark overlay from just this screen */
+.product-catalog-screen::before {
+    display: none;
+}
+
+.catalog-card {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1200px;
+    height: 90vh; /* Give it a bit of vertical padding */
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+}
+
+.catalog-card #dynamic-product-grid {
+    flex-grow: 1; /* Allow the grid to take up available space */
+    overflow-y: auto; /* Make the grid scrollable if content overflows */
+    padding: 1rem; /* Add some padding inside the scroll area */
+    
+    /* Custom scrollbar for a cleaner look */
+    scrollbar-width: thin;
+    scrollbar-color: var(--gold) transparent;
+}
+
+.catalog-card #dynamic-product-grid::-webkit-scrollbar {
+    width: 8px;
+}
+
+.catalog-card #dynamic-product-grid::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.catalog-card #dynamic-product-grid::-webkit-scrollbar-thumb {
+    background-color: var(--gold);
+    border-radius: 10px;
 }

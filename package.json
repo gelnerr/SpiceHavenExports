@@ -1,15 +1,23 @@
 {
-  "name": "spicehavenexports-main",
+  "name": "spicehaven",
   "version": "1.0.0",
-  "description": "",
+  "description": "<a href = \"https://spicehavenexports.netlify.app/\"> Website Link </a>",
   "main": "script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gelnerr/SpiceHavenExports.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/gelnerr/SpiceHavenExports/issues"
+  },
+  "homepage": "https://github.com/gelnerr/SpiceHavenExports#readme",
   "dependencies": {
     "@supabase/supabase-js": "^2.90.0"
   }

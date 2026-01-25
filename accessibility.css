@@ -1,0 +1,106 @@
+/* accessibility.css */
+
+.accessibility-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1010;
+}
+
+.accessibility-button {
+    width: 60px;
+    height: 60px;
+    background-color: var(--deep-green);
+    color: var(--white);
+    border-radius: 50%;
+    border: none;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease-in-out;
+}
+
+.accessibility-button:hover {
+    transform: scale(1.1);
+}
+
+.accessibility-menu {
+    position: absolute;
+    bottom: 75px;
+    right: 0;
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    width: 200px;
+    padding: 5px;
+    visibility: hidden; /* Use visibility instead of display for transitions */
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.2s ease-in-out;
+}
+
+.accessibility-menu.active {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.menu-item {
+    display: flex;
+    justify-content: space-between; /* Puts space between items */
+    align-items: center;
+    padding: 12px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.menu-item:hover {
+    background-color: var(--cream);
+}
+
+/* Specific styling for the chevron icon within menu items */
+.menu-item .fa-chevron-left {
+    font-size: 0.8em;
+    opacity: 0.6;
+    /* Removed margin-right, space-between will handle separation */
+}
+
+.sub-menu {
+    position: absolute;
+    bottom: 0;
+    right: 105%; /* Position to the left of the main menu */
+    width: 150px;
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    padding: 5px;
+    visibility: hidden;
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    transition: all 0.2s ease-in-out;
+}
+
+.menu-item.show-sub-menu .sub-menu {
+    visibility: visible;
+    opacity: 1;
+}
+
+.sub-menu-item {
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.sub-menu-item:hover {
+    background-color: var(--cream);
+}
