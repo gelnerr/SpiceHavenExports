@@ -33,9 +33,7 @@ exports.handler = async function(event, context) {
         }
 
         // Build update object dynamically
-        const updates = {
-            updated_at: new Date(),
-        };
+        const updates = {};
         if (name) updates.name = name;
         if (description !== undefined) updates.description = description;
         if (price !== undefined) updates.price = price;
