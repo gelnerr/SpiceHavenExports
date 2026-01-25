@@ -26,7 +26,7 @@ exports.handler = async function(event, context) {
 
         const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey);
 
-        const { name, description, image_url } = JSON.parse(event.body);
+        const { name, description, price, image_url } = JSON.parse(event.body);
 
         if (!name) {
             return { statusCode: 400, body: 'Bad Request: Product name is required' };
@@ -34,7 +34,7 @@ exports.handler = async function(event, context) {
 
         const { data: newProduct, error: insertError } = await supabaseAdmin
             .from('products')
-            .insert([{ name, description, image_url }])
+            .insert([{ name, description, price, image_url }])
             .select()
             .single();
 

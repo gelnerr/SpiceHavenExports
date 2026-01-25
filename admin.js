@@ -90,7 +90,10 @@ async function fetchAndDisplayProducts() {
             const item = document.createElement('div');
             item.className = 'product-item';
             item.innerHTML = `
-                <span class="product-item-name">${product.name.replace(/</g, "&lt;")}</span>
+                <span class="product-item-name">
+                    ${product.name.replace(/</g, "&lt;")}
+                    ${product.price ? `<span style="color:var(--gold); font-size:0.9em;">(₹${product.price})</span>` : ''}
+                </span>
                 <button class="delete-button" data-id="${product.id}">Delete</button>
             `;
             existingProductsList.appendChild(item);
@@ -152,6 +155,7 @@ addProductForm.addEventListener('submit', async (e) => {
     const newProduct = {
         name: document.getElementById('product-name').value,
         description: document.getElementById('product-description').value,
+        price: document.getElementById('product-price').value, // Add price
         image_url: imageUrl, // Use the uploaded image URL or null
     };
 

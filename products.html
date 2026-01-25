@@ -38,7 +38,7 @@
             </div>
         </section>
 
-        <section class="product-screen" style="background-image: url('images/black-pepper.jpg');">
+        <section class="product-screen" id="product-pepper" style="background-image: url('images/black-pepper.jpg');">
             <div class="glass-card">
                 <h2 data-i18n="pepper_page_title">Idukki Black Pepper</h2>
                 <span class="subtitle" data-i18n="pepper_page_subtitle">Idukki Gold - King of Spices</span>
@@ -53,7 +53,7 @@
             </div>
         </section>
 
-        <section class="product-screen" style="background-image: url('images/cardamom.jpg');">
+        <section class="product-screen" id="product-cardamom" style="background-image: url('images/cardamom.jpg');">
             <div class="glass-card">
                 <h2 data-i18n="cardamom_page_title">Green Cardamom</h2>
                 <span class="subtitle" data-i18n="cardamom_page_subtitle">Queen of Spices</span>
@@ -68,7 +68,7 @@
             </div>
         </section>
 
-        <section class="product-screen" style="background-image: url('images/coffee.jpg');">
+        <section class="product-screen" id="product-coffee" style="background-image: url('images/coffee.jpg');">
             <div class="glass-card">
                 <h2 data-i18n="coffee_page_title">High Range Coffee</h2>
                 <span class="subtitle" data-i18n="coffee_page_subtitle">Robusta & Arabica Blend</span>
@@ -122,18 +122,43 @@
                     
                     if (products && products.length > 0) {
                         products.forEach(product => {
-                            const card = document.createElement('div');
-                            card.className = 'product-card';
                             const name = product.name ? product.name.replace(/</g, "&lt;") : 'Unnamed Product';
                             const description = product.description ? product.description.replace(/</g, "&lt;") : 'No description available.';
                             const imageUrl = product.image_url || 'images/placeholder-story.jpg';
+                            const priceHtml = product.price ? `<p style="color: var(--deep-green); font-weight: bold; margin-top: 0.5rem;">₹${product.price}</p>` : '';
+
+                            // 1. Add to Grid
+                            const card = document.createElement('div');
+                            card.className = 'product-card';
                             card.innerHTML = `
                                 <div class="product-image"><img src="${imageUrl}" alt="${name}"></div>
                                 <div class="product-info">
                                     <h3>${name}</h3>
                                     <p style="color: var(--text-light); font-size: 1rem; line-height: 1.5;">${description}</p>
+                                    ${priceHtml}
                                 </div>`;
                             productGrid.appendChild(card);
+
+                            // 2. Update Hero Sections if match found
+                            // Helper to update CTA
+                            const updateHeroPrice = (sectionId, price) => {
+                                const section = document.getElementById(sectionId);
+                                if (section && price) {
+                                    const cta = section.querySelector('.cta-button');
+                                    if (cta) {
+                                        cta.textContent = `Buy Now - ₹${price}`;
+                                        cta.style.background = 'var(--deep-green)';
+                                    }
+                                }
+                            };
+
+                            if (name.toLowerCase().includes('black pepper') && name.toLowerCase().includes('idukki')) {
+                                updateHeroPrice('product-pepper', product.price);
+                            } else if (name.toLowerCase().includes('green cardamom')) {
+                                updateHeroPrice('product-cardamom', product.price);
+                            } else if (name.toLowerCase().includes('high range coffee')) {
+                                updateHeroPrice('product-coffee', product.price);
+                            }
                         });
                     } else {
                         const noProductsEl = document.createElement('p');
