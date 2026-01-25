@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Products | Spice Haven Exports</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="snap-scroll"> <header style="position: fixed; width: 100%; top: 0; z-index: 1000;">
+        <nav class="container">
+            <a href="index.html" class="logo-container">
+                <img src="logo.png" alt="Spice Haven Exports Logo" class="logo-img">
+                <div class="logo-text"><h1>Spice Haven Exports</h1><p>Pure Aroma. True Flavor.</p></div>
+            </a>
+            <button class="mobile-menu" onclick="toggleMenu()">☰</button>
+            <ul id="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="products.html" class="active">Products</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="scroll-indicator">
+        <div class="dot active" onclick="scrollToSection(0)"></div>
+        <div class="dot" onclick="scrollToSection(1)"></div>
+        <div class="dot" onclick="scrollToSection(2)"></div>
+        <div class="dot" onclick="scrollToSection(3)"></div>
+    </div>
+
+    <div class="scroll-container" id="mainScroll">
+        
+        <section class="product-screen" style="background-image: url('https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=1920&auto=format&fit=crop');">
+            <div class="glass-card visible"> <h2>Our Signature Collection</h2>
+                <span class="subtitle">Handpicked from the Hills of Idukki</span>
+                <p>We don't sell everything. We only sell what we can grow perfectly. Scroll down to experience the purity of Kerala's finest spices.</p>
+                <p style="font-size: 0.9rem; margin-top: 1rem;">⬇ Scroll to explore</p>
+            </div>
+        </section>
+
+        <section class="product-screen" style="background-image: url('images/black-pepper.jpg');">
+            <div class="glass-card">
+                <h2>Idukki Black Pepper</h2>
+                <span class="subtitle">Idukki Gold - King of Spices</span>
+                <p>Bold, aromatic, and rich in piperine. Our pepper vines climb high on shade trees, allowing the berries to mature slowly and develop a complex, robust flavor profile.</p>
+                <ul class="glass-features">
+                    <li>High Piperine Content</li>
+                    <li>Bold, Uniform Berries</li>
+                    <li>Sun-Dried Naturally</li>
+                    <li>Grade: TGSEB & MG-1</li>
+                </ul>
+                <a href="contact.html" class="cta-button">Request Quote</a>
+            </div>
+        </section>
+
+        <section class="product-screen" style="background-image: url('images/cardamom.jpg');">
+            <div class="glass-card">
+                <h2>Green Cardamom</h2>
+                <span class="subtitle">Queen of Spices</span>
+                <p>Our cardamom is known for its vibrant green color and intense aroma. Harvested at the perfect moment of maturity to ensure the seeds inside are full of essential oils.</p>
+                <ul class="glass-features">
+                    <li>8mm+ Pod Size Available</li>
+                    <li>Intense Aroma</li>
+                    <li>No Artificial Color</li>
+                    <li>Hand-Sorted</li>
+                </ul>
+                <a href="contact.html" class="cta-button">Request Quote</a>
+            </div>
+        </section>
+
+        <section class="product-screen" style="background-image: url('images/coffee.jpg');">
+            <div class="glass-card">
+                <h2>High Range Coffee</h2>
+                <span class="subtitle">Robusta & Arabica Blend</span>
+                <p>Grown in the shade of spice plantations, our coffee absorbs the essence of the surrounding flora. The result is a smooth, low-acidity cup with chocolatey undertones.</p>
+                <ul class="glass-features">
+                    <li>Altitude: 3000ft+</li>
+                    <li>Shade Grown</li>
+                    <li>Selective Picking</li>
+                    <li>Wet & Dry Processing</li>
+                </ul>
+                <a href="contact.html" class="cta-button">Request Quote</a>
+            </div>
+        </section>
+
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Additional Script just for this page to handle the "Visible" animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelector('.glass-card').classList.add('visible');
+                    
+                    // Update dots
+                    const dots = document.querySelectorAll('.dot');
+                    const sections = document.querySelectorAll('.product-screen');
+                    const index = Array.from(sections).indexOf(entry.target);
+                    
+                    dots.forEach(d => d.classList.remove('active'));
+                    if(dots[index]) dots[index].classList.add('active');
+                }
+            });
+        }, { threshold: 0.5 }); // Trigger when 50% of the section is visible
+
+        document.querySelectorAll('.product-screen').forEach(section => {
+            observer.observe(section);
+        });
+
+        function scrollToSection(index) {
+            const container = document.getElementById('mainScroll');
+            const sections = document.querySelectorAll('.product-screen');
+            sections[index].scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

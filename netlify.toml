@@ -1,0 +1,9 @@
+# netlify.toml
+
+[build]
+  # This setting tells Netlify where our serverless functions are located.
+  functions = "netlify/functions"
+
+[dev]
+  # This allows the Netlify CLI (if you use it locally) to correctly serve the functions.
+  functions = "netlify/functions"
