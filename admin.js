@@ -20,7 +20,16 @@ const logoutButton = document.getElementById('logout-button');
 const addProductForm = document.getElementById('add-product-form');
 const addProductMessage = document.getElementById('add-product-message');
 const existingProductsList = document.getElementById('existing-products-list');
-const productImageFile = document.getElementById('product-image-file'); // New: File input element
+const productImageFile = document.getElementById('product-image-file');
+
+// Edit Mode Selectors
+const productIdInput = document.getElementById('product-id');
+const formTitle = document.getElementById('form-title');
+const submitButton = document.getElementById('submit-button');
+const cancelEditButton = document.getElementById('cancel-edit-button');
+
+// --- STATE ---
+let currentEditingProduct = null;
 
 // --- SUPABASE CLIENT ---
 const { createClient } = supabase;
@@ -87,6 +96,9 @@ async function fetchAndDisplayProducts() {
 
         existingProductsList.innerHTML = '';
         products.forEach(product => {
+            // Encode product data to store in dataset
+            const productJson = JSON.stringify(product).replace(/"/g, '&quot;');
+            
             const item = document.createElement('div');
             item.className = 'product-item';
             item.innerHTML = `
@@ -94,7 +106,10 @@ async function fetchAndDisplayProducts() {
                     ${product.name.replace(/</g, "&lt;")}
                     ${product.price ? `<span style="color:var(--gold); font-size:0.9em;">(₹${product.price})</span>` : ''}
                 </span>
-                <button class="delete-button" data-id="${product.id}">Delete</button>
+                <div class="actions">
+                    <button class="edit-button" data-product="${productJson}" style="margin-right: 10px; background: var(--deep-green); color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 4px;">Edit</button>
+                    <button class="delete-button" data-id="${product.id}" style="background: red; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 4px;">Delete</button>
+                </div>
             `;
             existingProductsList.appendChild(item);
         });
@@ -103,9 +118,14 @@ async function fetchAndDisplayProducts() {
     }
 }
 
+// Handle Form Submit (Add or Update)
 addProductForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    addProductMessage.textContent = 'Adding product...';
+    
+    const isEditing = !!productIdInput.value;
+    const actionText = isEditing ? 'Updating' : 'Adding';
+    
+    addProductMessage.textContent = `${actionText} product...`;
     addProductMessage.style.color = 'var(--text-light)';
 
     const { data: { session }, error: sessionError } = await dbClient.auth.getSession();
@@ -117,28 +137,27 @@ addProductForm.addEventListener('submit', async (e) => {
 
     const token = session.access_token;
     
-    let imageUrl = null; // Initialize imageUrl to null
+    let imageUrl = isEditing && currentEditingProduct ? currentEditingProduct.image_url : null;
 
     // Handle file upload if a file is selected
     const imageFile = productImageFile.files[0];
     if (imageFile) {
         const fileExtension = imageFile.name.split('.').pop();
-        const fileName = `${Date.now()}.${fileExtension}`; // Unique filename
-        const filePath = `product_images/${fileName}`; // Path in your Supabase storage bucket
+        const fileName = `${Date.now()}.${fileExtension}`; 
+        const filePath = `product_images/${fileName}`; 
 
         try {
             const { error: uploadError } = await dbClient.storage
                 .from('product-images')
                 .upload(filePath, imageFile, {
                     cacheControl: '3600',
-                    upsert: false // Don't overwrite if file exists
+                    upsert: false
                 });
 
             if (uploadError) {
                 throw new Error(`Image upload failed: ${uploadError.message}`);
             }
 
-            // Get public URL of the uploaded image
             const { data: publicUrlData } = dbClient.storage
                 .from('product-images')
                 .getPublicUrl(filePath);
@@ -148,43 +167,53 @@ addProductForm.addEventListener('submit', async (e) => {
         } catch (error) {
             addProductMessage.textContent = `Error: ${error.message}`;
             addProductMessage.style.color = 'red';
-            return; // Stop execution if upload fails
+            return;
         }
     }
 
-    const newProduct = {
+    const productData = {
         name: document.getElementById('product-name').value,
         description: document.getElementById('product-description').value,
-        price: document.getElementById('product-price').value, // Add price
-        image_url: imageUrl, // Use the uploaded image URL or null
+        price: document.getElementById('product-price').value,
+        image_url: imageUrl,
     };
 
+    if (isEditing) {
+        productData.id = productIdInput.value;
+    }
+
     try {
-        const response = await fetch('/.netlify/functions/add-product', {
+        const endpoint = isEditing ? '/.netlify/functions/update-product' : '/.netlify/functions/add-product';
+        const response = await fetch(endpoint, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`,
             },
-            body: JSON.stringify(newProduct),
+            body: JSON.stringify(productData),
         });
 
         if (!response.ok) {
             const err = await response.json();
-            throw new Error(err.error || 'Failed to add product.');
+            throw new Error(err.error || `Failed to ${isEditing ? 'update' : 'add'} product.`);
         }
 
-        addProductMessage.textContent = 'Product added successfully!';
+        addProductMessage.textContent = `Product ${isEditing ? 'updated' : 'added'} successfully!`;
         addProductMessage.style.color = 'var(--deep-green)';
-        addProductForm.reset();
+        
+        // Reset form and mode
+        resetForm();
         await fetchAndDisplayProducts();
+        
     } catch (error) {
         addProductMessage.textContent = `Error: ${error.message}`;
         addProductMessage.style.color = 'red';
     }
 });
 
+// Handle List Clicks (Edit / Delete)
 existingProductsList.addEventListener('click', async (e) => {
+    // DELETE
     if (e.target.classList.contains('delete-button')) {
         const productId = e.target.dataset.id;
         
@@ -219,6 +248,51 @@ existingProductsList.addEventListener('click', async (e) => {
             }
         }
     }
+    
+    // EDIT
+    if (e.target.classList.contains('edit-button')) {
+        const productData = JSON.parse(e.target.dataset.product);
+        enterEditMode(productData);
+    }
+});
+
+// Helper: Enter Edit Mode
+function enterEditMode(product) {
+    currentEditingProduct = product;
+    
+    // Populate form
+    productIdInput.value = product.id;
+    document.getElementById('product-name').value = product.name || '';
+    document.getElementById('product-description').value = product.description || '';
+    document.getElementById('product-price').value = product.price || '';
+    
+    // Update UI
+    formTitle.textContent = `Edit Product: ${product.name}`;
+    submitButton.textContent = 'Update Product';
+    submitButton.style.background = 'var(--deep-green)'; // Ensure color
+    cancelEditButton.style.display = 'inline-block';
+    
+    // Scroll to form
+    addProductForm.scrollIntoView({ behavior: 'smooth' });
+}
+
+// Helper: Reset Form (Exit Edit Mode)
+function resetForm() {
+    addProductForm.reset();
+    productIdInput.value = '';
+    currentEditingProduct = null;
+    
+    // Reset UI
+    formTitle.textContent = 'Add New Product';
+    submitButton.textContent = 'Add Product';
+    cancelEditButton.style.display = 'none';
+}
+
+// Handle Cancel Edit
+cancelEditButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    resetForm();
+    addProductMessage.textContent = 'Edit cancelled.';
 });
 
 // --- INITIALIZATION ---

@@ -41,8 +41,9 @@
             </div>
 
             <div class="form-container">
-                <h3>Add New Product</h3>
+                <h3 id="form-title">Add New Product</h3>
                 <form id="add-product-form" class="admin-form">
+                    <input type="hidden" id="product-id">
                     <div class="form-group">
                         <label for="product-name">Product Name</label>
                         <input type="text" id="product-name" required>
@@ -59,7 +60,10 @@
                         <label for="product-image-file">Product Image File</label>
                         <input type="file" id="product-image-file" accept="image/*">
                     </div>
-                    <button type="submit" class="cta-button">Add Product</button>
+                    <div class="form-actions" style="display: flex; gap: 10px;">
+                        <button type="submit" class="cta-button" id="submit-button">Add Product</button>
+                        <button type="button" class="cta-button" id="cancel-edit-button" style="background: var(--text-light); display: none;">Cancel</button>
+                    </div>
                     <p id="add-product-message" class="status-message"></p>
                 </form>
             </div>
