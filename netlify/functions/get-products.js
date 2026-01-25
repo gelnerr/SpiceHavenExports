@@ -1,4 +1,5 @@
 // netlify/functions/get-products.js
+// Updated to ensure fresh deployment
 
 const { createClient } = require('@supabase/supabase-js');
 
